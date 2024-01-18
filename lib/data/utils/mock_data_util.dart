@@ -33,8 +33,15 @@ class MockDataUtil {
 
   static User getMockUser() {
     String avatarUrl = _avatarUrls[_random.nextInt(_avatarUrls.length)];
+
+    String? tag;
+    if (_random.nextBool()) {
+      int numberOfWords = _random.nextInt(3) + 1;
+      tag = _faker.lorem.words(numberOfWords).join(' ');
+    }
     return User(
       username: _faker.person.firstName(),
+      tag: tag,
       avatarUrl: avatarUrl,
     );
   }
