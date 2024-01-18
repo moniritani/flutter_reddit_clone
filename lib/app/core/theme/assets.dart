@@ -156,6 +156,17 @@ class IconAssets {
     );
   }
 
+  static CustomIcon attachment({
+    Size? size,
+    Color? color,
+  }) {
+    return _customIcons(
+      'assets/icons/ic_attachment.png',
+      size: size,
+      color: color,
+    );
+  }
+
 }
 
 class CustomIcon extends StatelessWidget {

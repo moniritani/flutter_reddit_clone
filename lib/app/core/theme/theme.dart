@@ -40,33 +40,42 @@ class AppTheme {
       ),
         dividerColor: AppColors.dividerColorLight,
         dialogBackgroundColor: AppColors.backgroundLight,
-
+        dialogTheme: const DialogTheme(
+          shadowColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+        ),
       textTheme: textTheme(AppColors.onSurfaceLight),
         colorScheme: const ColorScheme.light(
           surface: AppColors.backgroundLight,
           onSurface: AppColors.onSurfaceLight,
-          //ti
+          surfaceVariant: AppColors.surfaceLightVariant,
+          onSurfaceVariant: AppColors.onSurfaceLightVariant,
         )
     );
   }
 
   static ThemeData dark() {
     return ThemeData.dark().copyWith(
-      canvasColor: AppColors.backgroundDark,
-      primaryColor: AppColors.primaryDark,
-      scaffoldBackgroundColor: AppColors.backgroundDark,
-      appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.primaryDark,
-        titleTextStyle: textTheme(AppColors.onSurfaceLight).titleLarge,
-      ),
+        canvasColor: AppColors.backgroundDark,
+        primaryColor: AppColors.primaryDark,
+        scaffoldBackgroundColor: AppColors.backgroundDark,
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.primaryDark,
+          titleTextStyle: textTheme(AppColors.onSurfaceLight).titleLarge,
+        ),
+        dialogTheme: const DialogTheme(
+          shadowColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+        ),
         dividerColor: AppColors.dividerColorDark,
         dialogBackgroundColor: AppColors.backgroundDark,
-      textTheme: textTheme(AppColors.onSurfaceDark),
-      colorScheme: const ColorScheme.dark(
+        textTheme: textTheme(AppColors.onSurfaceDark),
+        colorScheme: const ColorScheme.dark(
           surface: AppColors.backgroundDark,
           onSurface: AppColors.onSurfaceDark,
-
-      )
+          surfaceVariant: AppColors.surfaceDarkVariant,
+          onSurfaceVariant: AppColors.onSurfaceDarkVariant,
+        )
     );
   }
 }

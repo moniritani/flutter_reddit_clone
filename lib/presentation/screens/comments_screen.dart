@@ -1,32 +1,82 @@
 import 'package:reddit_clone/data/models/models.dart';
+import 'package:reddit_clone/presentation/widgets/comment_input_widget.dart';
 import 'package:reddit_clone/providers/providers.dart';
 import 'package:reddit_clone/app/app_dependencies.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_clone/data/utils/mock_data_util.dart';
 import 'package:reddit_clone/presentation/widgets/widgets.dart';
 
-class CommentsScreen extends ConsumerWidget {
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
-  CommentsScreen({Key? key}) : super(key: key);
+
+class CommentsScreen extends ConsumerStatefulWidget {
+  const CommentsScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CommentsScreen> createState() => _CommentsScreenState();
+
+}
+
+class _CommentsScreenState extends ConsumerState<CommentsScreen> {
+
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+
+
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     List<Comment> comments = ref.watch(postProvider).comments;
 
     return Column(
+      //mainAxisSize: MainAxisSize.min,
       children: [
         _buildDraggableIndicator(context),
         Expanded(
           child: AnimatedList(
             key: _listKey,
+            reverse: true,
+            controller: _scrollController,
             initialItemCount: comments.length,
             itemBuilder: (context, index,animation) {
               return _buildAnimatedItem(ref,comments[index], animation);
             },
           ),
         ),
-        _buildAddCommentSection(comments,ref),
+        Consumer(
+          builder: (context, ref, child) {
+            final textEditingController = TextEditingController();
+            return CommentInputSection(
+              textEditingController: textEditingController, onReply: (commentText ) {
+              Comment newComment = Comment(
+                id: DateTime.now().toString(),
+                text: commentText,
+                date: DateTime.now(),
+                user: MockDataUtil.getMockUser(),
+                votes: VoteModel(),
+                replies: [],
+              );
+              ref.read(postProvider.notifier).addComment(newComment);
+              _listKey.currentState?.insertItem(comments.length - 1);
+              _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+                duration: AppDurations.defaultAnimation,
+                curve: Curves.easeOut,
+              );
+            },
+            );
+          },
+        )
       ],
     );
   }
@@ -141,44 +191,4 @@ class CommentsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildAddCommentSection(List<Comment> comments, WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Dimens.spacingXSmall, vertical: Dimens.spacingXSmall),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: Dimens.spacingSmall),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Dimens.cornerRadiusTiny),
-          color: Colors.white,
-        ),
-        child: Row(
-          children: [
-            const Expanded(
-              child: TextField(
-                decoration: InputDecoration.collapsed(
-                  hintText: 'Add a comment...',
-                ),
-              ),
-            ),
-            ImageButton(
-              icon: IconAssets.gallery(),
-              onPressed: () {
-                  // Create a new comment
-                  Comment newComment = Comment(
-                    id: DateTime.now().toString(), // Generate a unique ID
-                    text: "Hello",
-                    date: DateTime.now(),
-                    user: MockDataUtil.getMockUser(),
-                    votes: VoteModel(),
-                    replies: [],
-                  );
-
-                  ref.read(postProvider.notifier).addComment(newComment);
-                  _listKey.currentState?.insertItem(comments.length - 1);
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
