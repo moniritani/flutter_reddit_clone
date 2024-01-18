@@ -12,6 +12,7 @@ export 'extensions/extensions.dart';
 export 'core/constants/constants.dart';
 
 // Theme
+export 'package:reddit_clone/app/core/theme/theme.dart';
 export 'package:reddit_clone/app/core/theme/assets.dart';
 export 'package:reddit_clone/app/core/theme/dimens.dart';
 export 'package:reddit_clone/app/core/theme/colors.dart';

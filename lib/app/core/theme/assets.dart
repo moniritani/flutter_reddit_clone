@@ -2,149 +2,182 @@ import 'package:reddit_clone/app/app_dependencies.dart';
 
 class IconAssets {
 
-  static Image _customIcons(
-      String assetPath,
-      {
-    double? width,
-    double? height,
-    Color? color,
-  }) {
-    return Image.asset(
-      assetPath,
-      width: width ?? 24.0,
-      height: height ?? 24.0,
-      color: color ?? AppColors.textDark,
+  static CustomIcon _customIcons(String assetPath, {
+    Size? size,
+    Color? color})
+  {
+    return CustomIcon(
+      assetPath: assetPath,
+      size: size,
+      color: color,
     );
   }
 
-  static Image play({
-    double? width,
-    double? height,
+  static CustomIcon play({
+    Size? size,
     Color? color,
   }) {
     return _customIcons(
       'assets/icons/ic_play.png',
-      width: width,
-      height: height,
+      size: size,
       color: color,
     );
   }
 
-  static Image mute({
-    double? width,
-    double? height,
+  static CustomIcon mute({
+    Size? size,
     Color? color,
   }) {
     return _customIcons(
       'assets/icons/ic_mute.png',
-      width: width,
-      height: height,
+      size: size,
       color: color,
     );
   }
 
-  static Image pause({
-    double? width,
-    double? height,
+  static CustomIcon pause({
+    Size? size,
     Color? color,
   }) {
     return _customIcons(
       'assets/icons/ic_pause.png',
-      width: width,
-      height: height,
+      size: size,
       color: color,
     );
   }
 
-  static Image share({
-    double? width,
-    double? height,
+  static CustomIcon share({
+    Size? size,
     Color? color,
   }) {
     return _customIcons(
       'assets/icons/ic_share.png',
-      width: width,
-      height: height,
+      size: size,
       color: color,
     );
   }
 
-  static Image comment({
-    double? width,
-    double? height,
+  static CustomIcon comment({
+    Size? size,
     Color? color,
   }) {
     return _customIcons(
       'assets/icons/ic_comment.png',
-      width: width,
-      height: height,
+      size: size,
       color: color,
     );
   }
 
-  static Image arrowUp({
-    double? width,
-    double? height,
+  static CustomIcon arrowUp({
+    Size? size,
     Color? color,
   }) {
     return _customIcons(
       'assets/icons/ic_arrow_up.png',
-      width: width,
-      height: height,
+      size: size,
       color: color,
     );
   }
 
-  static Image arrowUpFilled({
-    double? width,
-    double? height,
+  static CustomIcon arrowUpFilled({
+    Size? size,
     Color? color,
   }) {
     return _customIcons(
       'assets/icons/ic_arrow_up_filled.png',
-      width: width,
-      height: height,
+      size: size,
       color: color,
     );
   }
 
-  static Image volumeUp({
-    double? width,
-    double? height,
+  static CustomIcon volumeUp({
+    Size? size,
     Color? color,
   }) {
     return _customIcons(
       'assets/icons/ic_volume_up.png',
-      width: width,
-      height: height,
+      size: size,
       color: color,
     );
   }
 
-  static Image arrowDown({
-    double? width,
-    double? height,
+  static CustomIcon arrowDown({
+    Size? size,
     Color? color,
   }) {
     return _customIcons(
       'assets/icons/ic_arrow_down.png',
-      width: width,
-      height: height,
+      size: size,
       color: color,
     );
   }
 
-  static Image arrowDownFilled({
-    double width = 24.0,
-    double height = 24.0,
+  static CustomIcon arrowDownFilled({
+    Size? size,
     Color? color,
   }) {
     return _customIcons(
       'assets/icons/ic_arrow_down_filled.png',
-      width: width,
-      height: height,
+      size: size,
       color: color,
     );
   }
 
+  static CustomIcon reply({
+    Size? size,
+    Color? color,
+  }) {
+    return _customIcons(
+      'assets/icons/ic_reply.png',
+      size: size,
+      color: color,
+    );
+  }
+
+  static CustomIcon moreHorizontal({
+    Size? size,
+    Color? color,
+  }) {
+    return _customIcons(
+      'assets/icons/ic_ellipsis.png',
+      size: size,
+      color: color,
+    );
+  }
+
+  static CustomIcon gallery({
+    Size? size,
+    Color? color,
+  }) {
+    return _customIcons(
+      'assets/icons/ic_gallery.png',
+      size: size,
+      color: color,
+    );
+  }
+
+}
+
+class CustomIcon extends StatelessWidget {
+  final String assetPath;
+  final Size? size;
+  final Color? color;
+
+  const CustomIcon({super.key,
+    required this.assetPath,
+    this.size,
+    this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final defaultColor = color ?? context.onSurfaceColor;
+
+    return Image.asset(
+      assetPath,
+      width: size?.width ?? Dimens.iconSizeDefault,
+      height: size?.height ?? Dimens.iconSizeDefault,
+      color: defaultColor,
+    );
+  }
 }

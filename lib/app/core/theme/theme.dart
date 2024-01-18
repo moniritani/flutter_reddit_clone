@@ -36,9 +36,13 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.backgroundLight,
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.primary,
-        titleTextStyle: textTheme(AppColors.textLight).titleLarge,
+        titleTextStyle: textTheme(AppColors.onSurfaceLight).titleLarge,
       ),
-      textTheme: textTheme(AppColors.textDark),
+      dividerColor: AppColors.dividerColorLight,
+      textTheme: textTheme(AppColors.onSurfaceLight),
+        colorScheme: const ColorScheme.light(
+            onSurface: AppColors.onSurfaceLight,
+        )
     );
   }
 
@@ -49,9 +53,13 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.backgroundDark,
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.primaryDark,
-        titleTextStyle: textTheme(AppColors.textLight).titleLarge,
+        titleTextStyle: textTheme(AppColors.onSurfaceLight).titleLarge,
       ),
-      textTheme: textTheme(AppColors.textLight),
+        dividerColor: AppColors.dividerColorDark,
+      textTheme: textTheme(AppColors.onSurfaceDark),
+      colorScheme: const ColorScheme.dark(
+        onSurface: AppColors.onSurfaceDark
+      )
     );
   }
 }

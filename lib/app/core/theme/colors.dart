@@ -10,6 +10,9 @@ class AppColors {
   static const Color backgroundLight = Color(0xFFFFFFFF); // White
   static const Color backgroundDark = Color(0xFF1A1A1B);  // Almost Black
 
-  static const Color textLight = Color(0xFF000000);       // Black
-  static const Color textDark = Color(0xFFFFFFFF);        // White
+  static const Color onSurfaceLight = Color(0xFF000000);       // Black
+  static const Color onSurfaceDark = Color(0xFFFFFFFF);        // White
+
+  static const Color dividerColorLight = Color(0xDDDDDDDD);       // Black
+  static const Color dividerColorDark = Color(0xFF777777);       // Black
 }

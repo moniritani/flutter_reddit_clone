@@ -36,6 +36,12 @@ class Dimens {
   static const double mediumFontSize = 16.0;
   static const double largeFontSize = 20.0;
 
+
+  // Font sizes
+  static const double iconSizeSmall   = 16.0;
+  static const double iconSizeDefault = 24.0;
+  static const double iconSizeBig     = 36.0;
+
   // Stroke sizes
   static const double strokeThinnest = 0.5;
   static const double strokeThinner = 1.0;
