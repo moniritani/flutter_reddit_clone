@@ -3,6 +3,23 @@ import 'package:reddit_clone/data/models/models.dart';
 import 'package:reddit_clone/presentation/widgets/widgets.dart';
 import 'package:video_player/video_player.dart';
 
+
+class VideoControlsWidget extends StatefulWidget {
+  final Post post;
+  final VoidCallback onSharePressed;
+  final VoidCallback onCommentPressed;
+  final VideoPlayerController controller;
+
+  const VideoControlsWidget({Key? key,
+    required this.post,
+    required this.controller,
+    required this.onSharePressed,
+    required this.onCommentPressed,}) : super(key: key);
+
+  @override
+  State<VideoControlsWidget> createState()  => _VideoControlsWidgetState();
+}
+
 class _VideoControlsWidgetState extends State<VideoControlsWidget> {
   @override
   Widget build(BuildContext context) {
@@ -37,7 +54,10 @@ class _VideoControlsWidgetState extends State<VideoControlsWidget> {
                 ],
               ),
               const Spacer(),
-              ActionButtons(post: widget.post)
+              ActionButtons(post: widget.post,
+                  onSharePressed: widget.onSharePressed,
+                  onCommentPressed: widget.onCommentPressed,
+              )
             ],
           ),
           // Video Controls
@@ -83,9 +103,9 @@ class _VideoControlsWidgetState extends State<VideoControlsWidget> {
           allowScrubbing: true,
           padding: EdgeInsets.zero,
           colors: VideoProgressColors(
-            playedColor: AppColors.textDark,
+            playedColor: AppColors.onSurfaceDark,
             bufferedColor: Colors.transparent,
-            backgroundColor: AppColors.textDark.withOpacity(0.3)
+            backgroundColor: AppColors.onSurfaceDark.withOpacity(0.3)
           ),
         ),
       ),
@@ -128,14 +148,4 @@ class _VideoControlsWidgetState extends State<VideoControlsWidget> {
 
 }
 
-class VideoControlsWidget extends StatefulWidget {
-  final Post post;
-  final VideoPlayerController controller;
 
-  const VideoControlsWidget({Key? key,
-    required this.post,
-    required this.controller}) : super(key: key);
-
-  @override
-  State<VideoControlsWidget> createState()  => _VideoControlsWidgetState();
-}
