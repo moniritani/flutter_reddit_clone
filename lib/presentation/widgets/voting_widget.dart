@@ -91,6 +91,7 @@ class _VotingWidgetState extends State<VotingWidget> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+
     return Flex(
       direction: widget.direction,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -101,11 +102,11 @@ class _VotingWidgetState extends State<VotingWidget> with TickerProviderStateMix
             verticalPadding: 0,
             horizontalPadding: 0,
             onPressed: _handleUpvote,
-            icon: widget.vote.isUpVoted ? IconAssets.arrowUpFilled(color: Colors.green,size: widget.iconSize) : IconAssets.arrowUp(size: widget.iconSize),
+            icon: widget.vote.isUpVoted ? IconAssets.arrowUpFilled(color: widget.vote.userVoteStatus.getColor(),size: widget.iconSize) : IconAssets.arrowUp(size: widget.iconSize),
           ),
         ),
         Gap(widget.spacing),
-        Text('${widget.vote.totalVotes}'),
+        Text('${widget.vote.totalVotes}', style: context.labelMediumStyle!.copyWith(color: widget.vote.userVoteStatus.getColor(defaultColor: context.onSurfaceColor))),
         Gap(widget.spacing),
         SlideTransition(
           position: _downVoteAnimation,
@@ -113,7 +114,7 @@ class _VotingWidgetState extends State<VotingWidget> with TickerProviderStateMix
             verticalPadding: 0,
             horizontalPadding: 0,
             onPressed: _handleDownVote,
-            icon: widget.vote.isDownVoted ? IconAssets.arrowDownFilled(color: Colors.red,size: widget.iconSize) : IconAssets.arrowDown(size: widget.iconSize),
+            icon: widget.vote.isDownVoted ? IconAssets.arrowDownFilled(color: widget.vote.userVoteStatus.getColor(),size: widget.iconSize) : IconAssets.arrowDown(size: widget.iconSize),
           ),
         ),
       ],

@@ -1,3 +1,5 @@
+import 'package:reddit_clone/app/app_dependencies.dart';
+
 enum VoteStatus { upVoted, downVoted, none }
 
 class VoteModel {
@@ -42,5 +44,20 @@ class VoteModel {
 
   bool get isDownVoted => userVoteStatus == VoteStatus.downVoted;
   bool get isUpVoted => userVoteStatus == VoteStatus.upVoted;
+
+}
+
+extension VoteStatusUI on VoteStatus {
+
+  Color getColor({Color? defaultColor}){
+    switch (this) {
+      case VoteStatus.upVoted:
+        return Colors.green;
+      case VoteStatus.downVoted:
+        return Colors.red;
+      default:
+        return defaultColor ?? Colors.grey;
+    }
+  }
 
 }
