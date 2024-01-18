@@ -1,16 +1,36 @@
-# reddit_clone
+# Reddit Clone Flutter App
 
-A new Flutter project.
+## Introduction
+
+This Reddit Clone is a Flutter-based mobile application that replicates key functionalities of Reddit, focusing on the post interactions and dynamic comment sections. It's designed to provide an example of Flutter's capabilities in creating interactive and responsive UIs.
+
+## Features
+
+- **Reddit Post Actions**: Emulates Reddit's post actions like upvoting, downvoting, commenting, and sharing.
+- **Interactive Video Posts**: Includes features to play, pause, and mute videos.
+- **Dynamic Comment Section**: Engage in discussions with an interactive comment section.
+
+## Known Issues
+
+- **Video Aspect Ratio**: Optimization needed for initial height calculation based on aspect ratio.
+- **Action Button Visibility**: Plans to add an overlay for action buttons on light video backgrounds for better visibility.
+
+## Roadmap (ToDos)
+
+- **Video Controls on Collapse**: Adding pause and mute controls during video collapse.
+- **Comments Filter Feature**: Implementing filtering options in the comments section.
+- **Enhanced Comments Sheet**: Integrating additional post information in the comments section.
+- **Sharing Functionality**: Enabling users to share posts externally.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Clone the repository and run `flutter pub get` in the project directory to install dependencies. The app can be run on an emulator or a physical device.
 
-A few resources to get you started if this is your first Flutter project:
+## Contributing
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Contributions are welcome! Feel free to fork the repository and submit pull requests.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contact
+
+- Email: [moniritani@gmail.com](mailto:your-email@example.com)
+- Project Link: [https://github.com/moniritani/flutter_reddit_clone](https://github.com/moniritani/flutter_reddit_clone)
