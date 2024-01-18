@@ -29,6 +29,15 @@ class VoteModel {
     }
   }
 
+  void clearVote() {
+    if (userVoteStatus == VoteStatus.downVoted) {
+      totalVotes += 1;
+    }
+    if (userVoteStatus == VoteStatus.upVoted) {
+      totalVotes -= 1;
+    }
+    userVoteStatus = VoteStatus.none;
+  }
 
 
   bool get isDownVoted => userVoteStatus == VoteStatus.downVoted;

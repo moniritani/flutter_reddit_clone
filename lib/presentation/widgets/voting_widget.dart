@@ -65,6 +65,9 @@ class _VotingWidgetState extends State<VotingWidget> with TickerProviderStateMix
       });
       _upVoteController.forward().then((_) => _upVoteController.reverse());
     }
+    else{
+      _clearVote();
+    }
   }
 
   void _handleDownVote() {
@@ -74,6 +77,15 @@ class _VotingWidgetState extends State<VotingWidget> with TickerProviderStateMix
       });
       _downVoteController.forward().then((_) => _downVoteController.reverse());
     }
+    else{
+      _clearVote();
+    }
+  }
+
+  void _clearVote(){
+    setState(() {
+      widget.vote.clearVote();
+    });
   }
 
 
