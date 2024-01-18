@@ -31,6 +31,7 @@ extension ContextExtensions on BuildContext {
   Color get onPrimaryColor => _theme.colorScheme.onPrimary;
   Color get shadowColor => _theme.colorScheme.shadow;
   Color get errorColor => _theme.colorScheme.error;
+  Color get onErrorColor => _theme.colorScheme.onError;
   Color get cardColor => _theme.cardColor;
   Color get disabledColor => _theme.disabledColor;
   Color get dividerColor => _theme.dividerColor;
@@ -38,6 +39,7 @@ extension ContextExtensions on BuildContext {
   Color get onBackgroundColor => _theme.colorScheme.onBackground;
   Color get surfaceColor => _theme.colorScheme.surface;
   Color get onSurfaceColor => _theme.colorScheme.onSurface;
+  Color get surfaceVariantColor => _theme.colorScheme.surfaceVariant;
   Color get onSurfaceVariantColor => _theme.colorScheme.onSurfaceVariant;
   Color get onSecondaryColor => _theme.colorScheme.onSecondary;
 
