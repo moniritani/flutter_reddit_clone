@@ -5,8 +5,14 @@ import 'package:reddit_clone/presentation/widgets/widgets.dart';
 class VotingWidget extends StatefulWidget {
   final Axis direction;
   final VoteModel vote;
+  final Size iconSize;
+  final double spacing;
 
-  const VotingWidget({Key? key, required this.vote, this.direction = Axis.vertical}) : super(key: key);
+  const VotingWidget({Key? key,
+    required this.vote,
+    this.spacing = Dimens.spacingTiny,
+    this.iconSize = const Size.square(Dimens.iconSizeDefault),
+    this.direction = Axis.vertical}) : super(key: key);
 
   @override
   State<VotingWidget> createState() => _VotingWidgetState();
@@ -73,7 +79,6 @@ class _VotingWidgetState extends State<VotingWidget> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-
     return Flex(
       direction: widget.direction,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -81,16 +86,22 @@ class _VotingWidgetState extends State<VotingWidget> with TickerProviderStateMix
         SlideTransition(
           position: _upvoteAnimation,
           child: ImageButton(
+            verticalPadding: 0,
+            horizontalPadding: 0,
             onPressed: _handleUpvote,
-            icon: widget.vote.isUpVoted ? IconAssets.arrowUpFilled(color: Colors.green) : IconAssets.arrowUp(),
+            icon: widget.vote.isUpVoted ? IconAssets.arrowUpFilled(color: Colors.green,size: widget.iconSize) : IconAssets.arrowUp(size: widget.iconSize),
           ),
         ),
+        Gap(widget.spacing),
         Text('${widget.vote.totalVotes}'),
+        Gap(widget.spacing),
         SlideTransition(
           position: _downVoteAnimation,
           child: ImageButton(
+            verticalPadding: 0,
+            horizontalPadding: 0,
             onPressed: _handleDownVote,
-            icon: widget.vote.isDownVoted ? IconAssets.arrowDownFilled(color: Colors.red) : IconAssets.arrowDown(),
+            icon: widget.vote.isDownVoted ? IconAssets.arrowDownFilled(color: Colors.red,size: widget.iconSize) : IconAssets.arrowDown(size: widget.iconSize),
           ),
         ),
       ],

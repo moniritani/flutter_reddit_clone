@@ -1,8 +1,8 @@
 import 'package:reddit_clone/app/app_dependencies.dart';
 
 class ImageButton extends StatelessWidget {
-  final Image icon;
   final String? label;
+  final CustomIcon icon;
   final double verticalPadding;
   final double horizontalPadding;
   final TextStyle? textStyle;
