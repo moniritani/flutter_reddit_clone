@@ -1,6 +1,6 @@
 import 'package:reddit_clone/data/models/models.dart';
 import 'package:reddit_clone/app/app_dependencies.dart';
-import 'package:reddit_clone/presentation/widgets/icon_text_widget.dart';
+import 'package:reddit_clone/presentation/widgets/widgets.dart';
 
 class VotingWidget extends StatefulWidget {
   final Axis direction;
@@ -80,7 +80,7 @@ class _VotingWidgetState extends State<VotingWidget> with TickerProviderStateMix
       children: <Widget>[
         SlideTransition(
           position: _upvoteAnimation,
-          child: IconTextButton(
+          child: ImageButton(
             onPressed: _handleUpvote,
             icon: widget.vote.isUpVoted ? IconAssets.arrowUpFilled(color: Colors.green) : IconAssets.arrowUp(),
           ),
@@ -88,7 +88,7 @@ class _VotingWidgetState extends State<VotingWidget> with TickerProviderStateMix
         Text('${widget.vote.totalVotes}'),
         SlideTransition(
           position: _downVoteAnimation,
-          child: IconTextButton(
+          child: ImageButton(
             onPressed: _handleDownVote,
             icon: widget.vote.isDownVoted ? IconAssets.arrowDownFilled(color: Colors.red) : IconAssets.arrowDown(),
           ),
