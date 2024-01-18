@@ -16,4 +16,22 @@ class Post {
     this.votes,
     this.comments = const [],
   });
+
+  Post copyWith({
+    String? id,
+    User? user,
+    String? description,
+    String? videoUrl,
+    VoteModel? votes,
+    List<Comment>? comments,
+  }) {
+    return Post(
+      id: id ?? this.id,
+      user: user ?? this.user,
+      description: description ?? this.description,
+      videoUrl: videoUrl ?? this.videoUrl,
+      votes: votes ?? this.votes,
+      comments: comments ?? this.comments,
+    );
+  }
 }

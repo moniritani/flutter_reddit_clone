@@ -38,10 +38,14 @@ class AppTheme {
         backgroundColor: AppColors.primary,
         titleTextStyle: textTheme(AppColors.onSurfaceLight).titleLarge,
       ),
-      dividerColor: AppColors.dividerColorLight,
+        dividerColor: AppColors.dividerColorLight,
+        dialogBackgroundColor: AppColors.backgroundLight,
+
       textTheme: textTheme(AppColors.onSurfaceLight),
         colorScheme: const ColorScheme.light(
-            onSurface: AppColors.onSurfaceLight,
+          surface: AppColors.backgroundLight,
+          onSurface: AppColors.onSurfaceLight,
+          //ti
         )
     );
   }
@@ -56,9 +60,12 @@ class AppTheme {
         titleTextStyle: textTheme(AppColors.onSurfaceLight).titleLarge,
       ),
         dividerColor: AppColors.dividerColorDark,
+        dialogBackgroundColor: AppColors.backgroundDark,
       textTheme: textTheme(AppColors.onSurfaceDark),
       colorScheme: const ColorScheme.dark(
-        onSurface: AppColors.onSurfaceDark
+          surface: AppColors.backgroundDark,
+          onSurface: AppColors.onSurfaceDark,
+
       )
     );
   }

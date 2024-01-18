@@ -6,12 +6,14 @@ import 'package:reddit_clone/presentation/widgets/widgets.dart';
 class CommentWidget extends StatelessWidget {
   final Comment comment;
   final double depthPadding;
+  final Function(Comment) onMoreActionsClicked;
 
-  const CommentWidget({
+  CommentWidget({
     Key? key,
     required this.comment,
     this.depthPadding = 0,
-  }) : super(key: key);
+    required this.onMoreActionsClicked,
+  }) : super(key: ValueKey(comment.id));
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class CommentWidget extends StatelessWidget {
                     _buildCommentContent(comment),
                     ...comment.replies.map((reply) => CommentWidget(
                       comment: reply,
-                      depthPadding: depthPadding + Dimens.spacingSmall,
+                      depthPadding: depthPadding + Dimens.spacingSmall, onMoreActionsClicked: onMoreActionsClicked,
                     )),
                   ],
                 ),
@@ -52,34 +54,38 @@ class CommentWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          UserHeaderWidget(user: comment.user,alignment: MainAxisAlignment.start,timestamp: comment.date.timeTag,showTag: true,),
+          UserHeaderWidget(user: comment.user,alignment: MainAxisAlignment.start,timestamp: comment.date.timeTag,showTag: true),
           const Gap(Dimens.spacingXSmall),
           Text(comment.text,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const Gap(Dimens.spacingNormal),
-              ImageButton(
-                icon: IconAssets.moreHorizontal(size: const Size.square(Dimens.iconSizeSmall)),
-                onPressed: (){
-                  //TODO: add action here
-                },
-              ),
-              const Gap(Dimens.spacingNormal),
-              ImageButton(
-                icon: IconAssets.reply(size: const Size.square(Dimens.iconSizeSmall)),
-                onPressed: (){
-                  //TODO: add action here
-                },
-              ),
-              const Gap(Dimens.spacingNormal),
-              VotingWidget(vote: comment.votes!, direction: Axis.horizontal,iconSize: const Size.square(Dimens.iconSizeSmall)),
-              const Gap(Dimens.spacingNormal),
-            ],
-          )
-          // ... other comment details ...
+          _buildActionButtons(comment)
         ],
       ),
+    );
+  }
+
+
+  Widget _buildActionButtons(Comment comment) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        const Gap(Dimens.spacingNormal),
+        ImageButton(
+          icon: IconAssets.moreHorizontal(size: const Size.square(Dimens.iconSizeSmall)),
+          onPressed: (){
+            onMoreActionsClicked(comment);
+          },
+        ),
+        const Gap(Dimens.spacingNormal),
+        ImageButton(
+          icon: IconAssets.reply(size: const Size.square(Dimens.iconSizeSmall)),
+          onPressed: (){
+            //TODO: add action here
+          },
+        ),
+        const Gap(Dimens.spacingNormal),
+        VotingWidget(vote: comment.votes!, direction: Axis.horizontal,iconSize: const Size.square(Dimens.iconSizeSmall)),
+        const Gap(Dimens.spacingNormal),
+      ],
     );
   }
 }

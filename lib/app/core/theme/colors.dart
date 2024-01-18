@@ -13,6 +13,6 @@ class AppColors {
   static const Color onSurfaceLight = Color(0xFF000000);       // Black
   static const Color onSurfaceDark = Color(0xFFFFFFFF);        // White
 
-  static const Color dividerColorLight = Color(0xDDDDDDDD);       // Black
-  static const Color dividerColorDark = Color(0xFF777777);       // Black
+  static const Color dividerColorLight = Color(0xDDDDDDDD);
+  static const Color dividerColorDark = Color(0xFF777777);
 }

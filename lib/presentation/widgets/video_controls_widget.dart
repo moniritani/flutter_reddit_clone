@@ -54,9 +54,9 @@ class _VideoControlsWidgetState extends State<VideoControlsWidget> {
                 ],
               ),
               const Spacer(),
-              ActionButtons(post: widget.post,
-                  onSharePressed: widget.onSharePressed,
-                  onCommentPressed: widget.onCommentPressed,
+              ActionButtons(
+                onSharePressed: widget.onSharePressed,
+                onCommentPressed: widget.onCommentPressed,
               )
             ],
           ),
